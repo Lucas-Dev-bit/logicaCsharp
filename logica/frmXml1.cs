@@ -239,19 +239,19 @@ namespace logica
                     XmlNode noAnoFabricacao = noInformacao.SelectSingleNode("anofab");
                     noAnoFabricacao.InnerText = anoFabricacao;
 
-                    XmlNode noPlaca = xml.SelectSingleNode("placa");
+                    XmlNode noPlaca = noInformacao.SelectSingleNode("placa");
                     noPlaca.InnerText = placa;
 
-                    XmlNode noPortas = xml.SelectSingleNode("qtdportas");
+                    XmlNode noPortas = noInformacao.SelectSingleNode("qtdportas");
                     noPortas.InnerText = qtdPortas;
 
-                    XmlNode noCombustivel = xml.SelectSingleNode("combustivel");
+                    XmlNode noCombustivel = noInformacao.SelectSingleNode("combustivel");
                     noCombustivel.InnerText = combustivel.ToString();
 
-                    XmlNode novalorCompra = xml.SelectSingleNode("valorCompra");
+                    XmlNode novalorCompra = noInformacao.SelectSingleNode("valorCompra");
                     novalorCompra.InnerText = valorCompra.ToString();
 
-                    XmlNode novalorVenda = xml.SelectSingleNode("valorVenda");
+                    XmlNode novalorVenda = noInformacao.SelectSingleNode("valorVenda");
                     novalorVenda.InnerText = valorVenda.ToString();
 
                     xml.Save(Util.pathFileXml1);

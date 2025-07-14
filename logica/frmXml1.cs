@@ -61,8 +61,9 @@ namespace logica
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            if (ValidarCampos()) {
-
+            if (ValidarCampos())
+                return;
+            
                 int codigo;
                 object combustivel;
                 string marca, modelo, anoFabricacao, placa, qtdPortas;
@@ -88,10 +89,7 @@ namespace logica
                 {
                     MessageBox.Show("Erro ao alterar a pessoa", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-
-
-            }
+            
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -157,6 +155,7 @@ namespace logica
 
             if (!File.Exists(Util.pathFileXml1))
             {
+                // cria o nó PAI
                 XmlElement noExercicio1 = xml.CreateElement("exercicio1");
                 xml.AppendChild(noExercicio1);
             }
@@ -289,20 +288,21 @@ namespace logica
            
             
             if (File.Exists(Util.pathFileXml1))
-            {
+                return false;
+            
                 xml.Load(Util.pathFileXml1);
-
-                MessageBox.Show($" O Código: {codigo} Já exite no banco de dados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
                 XmlNode noCodigo = xml.SelectSingleNode($"//item[codigo='{codigo}']");
 
+                if (noCodigo != null) {
+
+                    MessageBox.Show($" O Código: {codigo} Já exite no banco de dados", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Util.ConfigurarEstadoTela(Util.EstadoTela.Novo, btnCadastrar, btnAlterar, btnExcluir);
+                    return false;
+                }
                 //XmlNode noCodigo = xml.SelectSingleNode($"//item[codigo='{codigo}' and MARCA='{marca}]");
 
-                return noCodigo != null ? false : true;
-
-            }
+                return true;
            
-            return true;
         }
         private void CarregarGrid()
         {

@@ -45,6 +45,8 @@ namespace logica.Classes
             }
         }
 
+      
+
         public static string pathFileXml = "C:\\Users\\Lucas\\Desktop\\Curso de Programação\\ArquivoXML\\armazenagem.xml";
         public static string pathFileXml1 = "C:\\Users\\Lucas\\Desktop\\Curso de Programação\\ArquivoXML\\ExercicioXML1.xml";
     }

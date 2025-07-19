@@ -83,6 +83,7 @@ namespace logica
                     Alterar(codigo, marca, modelo, anoFabricacao, placa, qtdPortas, combustivel, valorCompra, valorVenda);
                     LimparCampos();
                     CarregarGrid();
+                    Util.ConfigurarEstadoTela(Util.EstadoTela.Novo, btnCadastrar, btnAlterar, btnExcluir);
                     MessageBox.Show("Registro alterado com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
@@ -277,6 +278,7 @@ namespace logica
                 if (noInformacao != null) { // se encontrar o ITEM, deleta
                     noInformacao.ParentNode.RemoveChild(noInformacao); // remove o nó filho do ITEM pai
                     xml.Save(Util.pathFileXml1);
+                    Util.ConfigurarEstadoTela(Util.EstadoTela.Novo, btnCadastrar, btnAlterar, btnExcluir);
                 }
             }
         }
@@ -284,8 +286,6 @@ namespace logica
         {
             //CRIA O OBJETO
             XmlDocument xml = new XmlDocument();
-
-           
             
             if (File.Exists(Util.pathFileXml1))
                 return false;
